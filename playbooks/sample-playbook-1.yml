@@ -1,0 +1,10 @@
+---
+- name : Copying File to remote server 
+  hosts: webservers
+  tasks:
+    - copy:
+        src: index.html
+        dest: /home/ansiblenode1/ansible/index.html
+
+     
+  

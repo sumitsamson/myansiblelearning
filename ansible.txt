@@ -1,0 +1,31 @@
+ansible 2.7.4
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.15rc1 (default, Nov 12 2018, 14:31:15) [GCC 7.3.0]
+===========================================================================================
+Your identification has been saved in /home/ansible/.ssh/id_rsa.
+Your public key has been saved in /home/ansible/.ssh/id_rsa.pub.
+
+ssh-copy-id ansiblenode1@ansiblenode1-VirtualBox
+
+Check if ssh if running on ansiblenode1-VirtualBox using the cmd sudo systemctl status ssh.service
+
+ssh 'ansiblenode1@ansiblenode1-VirtualBox'
+
+ssh-copy-id ansiblenode1@ansiblenode1-VirtualBox
+
+ansible -i inventory.txt -m ping all -u ansiblenode1
+ansible -v ansiblenode1-VirtualBox -m ping -u ansiblenode1
+
+ansible-playbook -i inventory.txt sample-playbook-1.yml -u ansiblenode1
+
+============================================================================================
+install apache 
+
+https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
+https://codingbee.net/tutorials/ansible/ansible-a-playbook-for-setting-up-an-apache-webserver
+
+
+
