@@ -1,3 +1,53 @@
+==========================================
+Steps to install Ansible on Ubuntu 18.xx
+=========================================
+
+Step 1.Create VM Ansible Master (ansiblemaster)
+Step 2.Install ansible on the ansiblemaster using the below steps
+
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+ansible --version
+
+Step 2. Create VM Ansible Node 1 (ansiblenode1)
+Step 3. Install python on it if not present.
+sudo apt-get install python and then run which python to confirm.
+
+Step 4.Create the RSA key pair on ansiblemaster 
+ssh-keygen (press enter ,enter )
+
+Output
+Your identification has been saved in /your_home/.ssh/id_rsa.
+Your public key has been saved in /your_home/.ssh/id_rsa.pub.
+The key fingerprint is:
+
+Step 5 — Copy the Public Key to ansiblenode1
+Copying Public Key Using ssh-copy-id >> ssh-copy-id <your-username>@ansiblenode1
+
+Output
+The authenticity of host '203.0.113.1 (203.0.113.1)' can't be established.
+ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
+Are you sure you want to continue connecting (yes/no)? yes  (press enter)
+
+Step 6 — Authenticate to ansiblenode1 Using SSH Keys
+ssh <your-username>@ansiblenode1
+
+Step 7. Add the ansiblenode1 entry to the default hosts file at location /etc/ansible/hosts
+for e.g
+[webservers]
+ansiblenode1 
+
+
+Step 7. Run the following command on ansiblemaster
+ansible -v ansiblenode1 -m ping -u <your-username-for-ansiblenode1>
+
+=====================================================================================================
+
+
+
 ansible 2.7.4
   config file = /etc/ansible/ansible.cfg
   configured module search path = [u'/home/ansible/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
