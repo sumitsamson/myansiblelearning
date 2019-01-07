@@ -1,5 +1,5 @@
 ---
-- name : Copying File to remote server 
+- name : Copying File index.html to remote server '{{ user.home }}/index.html' 
   hosts: webservers
   tasks:
     - copy:
