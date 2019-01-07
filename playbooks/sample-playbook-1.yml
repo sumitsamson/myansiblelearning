@@ -4,7 +4,7 @@
   tasks:
     - copy:
         src: ../index.html
-        dest: /home/ansiblenode1/ansible/index.html
+        dest: '{{ user.home }}/index.html'
 
      
   
