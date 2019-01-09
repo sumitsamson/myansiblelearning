@@ -1,5 +1,5 @@
 #Sample inventory file
 
 [webservers]
-ansiblenode1-VirtualBox
+10.175.173.25
 
