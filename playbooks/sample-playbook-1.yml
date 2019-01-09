@@ -1,10 +1,10 @@
 ---
-- name : Copying File index.html to remote server '{{ user.home }}/index.html' 
-  hosts: webservers
+- name : Copying File index.html to ansiblenode
+  hosts: all
   tasks:
     - copy:
         src: ../index.html
-        dest: '{{ user.home }}/index.html'
+        dest: /home/ansiblenode/Desktop/index.html'
 
      
   
