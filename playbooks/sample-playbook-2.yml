@@ -1,0 +1,10 @@
+---
+- name : Copying File index.html to ansiblenode
+  hosts: all
+  tasks:
+    - copy:
+        src: ../index.html
+        dest: /home/node2/Desktop/index.html'
+
+     
+  

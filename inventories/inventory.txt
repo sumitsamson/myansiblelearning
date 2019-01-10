@@ -1,5 +1,5 @@
 #Sample inventory file
 
 [webservers]
-10.175.174.27
+10.175.174.54
 
