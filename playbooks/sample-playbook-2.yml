@@ -2,9 +2,11 @@
 - name : Copying File index.html to ansiblenode
   hosts: all
   tasks:
+    - name: Ensure the directory
+      file: dest=/home/mydir state=directory
     - copy:
         src: ../index.html
-        dest: /home/node2/Desktop/index.html'
+        dest: /home/mydir/index.html'
 
      
   
