@@ -1,5 +1,7 @@
 ---
 - hosts: webservers
+  vars_files:
+     - ../vars/install-apache2.yml
   tasks:
     - name: install apache2
       apt: name=apache2 update_cache=yes state=latest
@@ -20,10 +22,10 @@
         - restart apache2
         
     - name: copy logo
-      copy: src=spartan-logo.jpg dest=/var/www/html/spartan-logo.jpg
+      copy: src={{ src_logo_path }} dest={{ dest_logo_path }}
      
     - name: copy application code to document root
-      template: src=index.html.j2 dest=/var/www/html/index.html
+      template: src={{ src_html_path }} dest={{ dest_html_path }}
       notify: 
         - restart apache
 

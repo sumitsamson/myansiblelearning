@@ -1,0 +1,4 @@
+src_logo_path: ../spartan-logo.jpg
+dest_logo_path: /var/www/html/spartan-logo.jpg
+src_html_path: ../index.html.j2
+dest_html_path: /var/www/html/index.html
