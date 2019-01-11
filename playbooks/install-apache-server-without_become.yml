@@ -27,7 +27,7 @@
     - name: copy application code to document root
       template: src={{ src_html_path }} dest={{ dest_html_path }}
       notify: 
-        - restart apache
+        - restart apache2
 
   handlers:
     - name: restart apache2
