@@ -1,7 +1,7 @@
 ---
 - hosts: webservers
-  become: yes
-  become_user: root
+  vars_files:
+     - ../vars/install-apache2.yml
   tasks:
     - name: install apache2
       apt: name=apache2 update_cache=yes state=latest
@@ -21,14 +21,16 @@
       notify:
         - restart apache2
         
-   - name: copy files to document root
-     copy: src=spartan-logo.jpg dest=/var/www/html/spartan-logo.jpg
+    - name: copy logo
+      copy: src={{ src_logo_path }} dest={{ dest_logo_path }}
      
-   - name: copy application code to document root
-     template: src=index.html.j2 dest=/var/www/html/index.html
-     notify: 
-        - restart apache
+    - name: copy application code to document root
+      template: src={{ src_html_path }} dest={{ dest_html_path }}
+      notify: 
+        - restart apache2
 
   handlers:
     - name: restart apache2
       service: name=apache2 state=restarted
+    - name: stop apache2
+      service: name=apache2 state=stop  
