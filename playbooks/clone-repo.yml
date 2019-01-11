@@ -1,5 +1,6 @@
 - hosts: all
-
+  vars_files:
+      - ../vars/clone-repo.yml
   tasks:
       - name: Ensure code directory
         file: dest={{ clone_dir }} state=directory
