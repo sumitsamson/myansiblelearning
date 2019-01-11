@@ -19,12 +19,12 @@
       notify:
         - restart apache2
         
-   - name: copy files to document root
-     copy: src=spartan-logo.jpg dest=/var/www/html/spartan-logo.jpg
+    - name: copy logo
+      copy: src=spartan-logo.jpg dest=/var/www/html/spartan-logo.jpg
      
-   - name: copy application code to document root
-     template: src=index.html.j2 dest=/var/www/html/index.html
-     notify: 
+    - name: copy application code to document root
+      template: src=index.html.j2 dest=/var/www/html/index.html
+      notify: 
         - restart apache
 
   handlers:
