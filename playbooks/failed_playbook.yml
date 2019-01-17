@@ -3,8 +3,8 @@
 - hosts: all
   tasks:
 
-    - name: Run hostname command
-      command: hostname
+    - name: Wrong command
+      command: hostname123
       register: hostname_var
       
     - debug: 
