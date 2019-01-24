@@ -72,10 +72,11 @@ ansible -v ansiblenode1-VirtualBox -m ping -u ansiblenode1
 ansible-playbook -i inventory.txt sample-playbook-1.yml -u ansiblenode1
 
 ============================================================================================
-install apache 
+# Ansible directory struture https://dev.to/tmidi/ansible-directory-layout-5edj
 
-https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
-https://codingbee.net/tutorials/ansible/ansible-a-playbook-for-setting-up-an-apache-webserver
+mkdir -p group_vars host_vars library module_utils filter_plugins
+mkdir -p roles/common/{tasks,handlers,templates,files,vars,defaults,meta,library,module_utils,lookup_plugins}
+touch production staging site.yml roles/common/{tasks,handlers,templates,files,vars,defaults,meta}/main.yml
 
 
 

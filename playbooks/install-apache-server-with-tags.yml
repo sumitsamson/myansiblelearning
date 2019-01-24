@@ -1,32 +1,42 @@
 ---
 - hosts: webservers
+  vars_files:
+     - ../vars/install-apache2.yml
   tasks:
     - name: install apache2
       apt: name=apache2 update_cache=yes state=latest
+      tags: install_apache
 
     - name: enabled mod_rewrite
       apache2_module: name=rewrite state=present
+      tags: enabled_mod_rewrite
       notify:
         - restart apache2
 
     - name: apache2 listen on port 8081
       lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80" line="Listen 8081" state=present
+      tags: install_apache
       notify:
         - restart apache2
 
     - name: apache2 virtualhost on port 8081
       lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8081>" state=present
+      tags: install_apache
       notify:
         - restart apache2
         
-   - name: copy files to document root
-     copy: src=spartan-logo.jpg dest=/var/www/html/spartan-logo.jpg
+    - name: copy logo
+      copy: src={{ src_logo_path }} dest={{ dest_logo_path }}
+      tags: copy_logo
      
-   - name: copy application code to document root
-     template: src=index.html.j2 dest=/var/www/html/index.html
-     notify: 
-        - restart apache
+    - name: copy application code to document root
+      template: src={{ src_html_path }} dest={{ dest_html_path }}
+      tags: copy_app_code
+      notify: 
+        - restart apache2
 
   handlers:
     - name: restart apache2
       service: name=apache2 state=restarted
+    - name: stop apache2
+      service: name=apache2 state=stop  

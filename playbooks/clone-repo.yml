@@ -1,0 +1,9 @@
+- hosts: all
+  vars_files:
+      - ../vars/clone-repo.yml
+  tasks:
+      - name: Ensure code directory
+        file: dest={{ clone_dir }} state=directory
+
+      - name: Deploy app
+        git: repo=git@github.com:sumitsamson/myansiblelearning.git dest={{ clone_dir }}

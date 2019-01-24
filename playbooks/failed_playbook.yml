@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  tasks:
+
+    - name: Wrong command
+      command: hostname123
+      register: hostname_var
+      
+    - debug: 
+       var: hostname_var.stdout_lines
+
