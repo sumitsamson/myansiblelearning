@@ -1,5 +1,5 @@
 #Sample inventory file
 
 [webservers]
-127.0.0.1
-
+#127.0.0.1
+10.131.224.35
