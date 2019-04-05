@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Print RED
+      shell: echo "RED"
+      tags: RED
+
+    - name: Print BLUE
+      shell: echo "BLUE"
+      tags: BLUE
+      
+    - name: Print GREEN
+      shell: echo "GREEN"
+      tags: GREEN
