@@ -1,15 +1,32 @@
-==========================================
-Steps to install Ansible on Ubuntu 18.xx
-=========================================
+===============================================================
+Installation on Redhat #https://developers.redhat.com/blog/2016/09/02/how-to-install-and-configure-ansible-on-rhel/
+===============================================================
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum -y install ansible
+
+====================================================================================
+Ansible installation : https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/install-ansible-automation-tool-for-it-management-on-centos-7-ubuntu-14-04-fedora-22-part-1.html
+====================================================================================
+### CentOS 7 ###
+
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y ansible
+
+### RHEL 7 ###
+
+subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
+yum install -y ansible
+
+### Ubuntu 18.04 / Ubuntu 16.04 ###
 
 Step 1.Create VM Ansible Master (ansiblemaster)
 Step 2.Install ansible on the ansiblemaster using the below steps
 
 sudo apt-get update
-sudo apt-get install software-properties-common
+sudo apt-get install software-properties-common 
 sudo apt-add-repository ppa:ansible/ansible
-sudo apt-get update
-sudo apt-get install ansible
+sudo apt-get update 
+sudo apt-get install -y ansible
 ansible --version
 
 Step 2. Create VM Ansible Node 1 (ansiblenode1)
@@ -78,5 +95,44 @@ mkdir -p group_vars host_vars library module_utils filter_plugins
 mkdir -p roles/common/{tasks,handlers,templates,files,vars,defaults,meta,library,module_utils,lookup_plugins}
 touch production staging site.yml roles/common/{tasks,handlers,templates,files,vars,defaults,meta}/main.yml
 
+=====================================
+Ansible commands :
+=====================================
+1. Cmd to check the playbook status : ansible-playbook playbook.yml --syntax--check
+
+===================================
+Ansible Vault
+===================================
+A typical use of Ansible Vault is to encrypt variable files. Vault can encrypt any YAML file, but the most common files to encrypt are:
+Files within the group_vars directory
+A role's defaults/main.yml file
+A role's vars/main.yml file
+Any other file used to store variables.
+
+Let's see how to to use Ansible Vault with some variable files.
+# Encrypt a role's defaults/main.yml file
+ansible-vault encrypt defaults/main.yml
+
+> New Vault password: 
+> Confirm New Vault password: 
+> Encryption successful
+
+Creating an Encrypted File
+ansible-vault create defaults/extra.yml
+> New Vault password: 
+> Confirm New Vault password:
+
+Decrypting a File
+You can decrypt a file to get it back to plaintext as well:
+
+ansible-vault decrypt defaults/main.yml
+> Vault password:
+---------------------------------
+Ansible 2.4+ and vault-id
+--------------------------------
+For Ansible 2.4+, ansible-vault works a little differently, using the --vault-id flag. The advantage of vault-id is that you can pass in multiple vault passwords or password files, in case you have files encrypted with different passwords.
+This expects to use a file. Here we see editing a file using --vault-id:
+
+ansible-vault --vault-id ./vault_password_file edit defaults/main.yml
 
 
