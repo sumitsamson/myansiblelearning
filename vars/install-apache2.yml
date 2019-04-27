@@ -2,3 +2,5 @@ src_logo_path: ../thumbsup-logo.jpg
 dest_logo_path: /var/www/html/thumbsup-logo.jpg
 src_html_path: ../index.html.j2
 dest_html_path: /var/www/html/index.html
+project_root: /var/www/html
+src_index2_path: ../index2.html
