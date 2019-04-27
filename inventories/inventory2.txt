@@ -1,6 +1,4 @@
 #Sample inventory file
 
 [webservers]
-10.74.225.105
-
-
+10.74.228.137
