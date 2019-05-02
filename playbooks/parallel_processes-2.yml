@@ -1,0 +1,10 @@
+---
+  - name: Sleep Playbook
+    hosts: all
+    gather_facts: no
+    tasks:
+       -  name: Sleep for 20 seconds
+          tags: sleep20
+          wait_for:
+            delay: 20
+            timeout: 0
